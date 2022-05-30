@@ -10,7 +10,7 @@ import {sampleDataList} from '../config';
 import {ShafiElement} from '../shaf-i-debt/shaf-i-element';
 
 import type {ListenerInterface} from '@alwatr/signal';
-import type {TemplateResult} from 'lit';
+import type {TemplateResult, CSSResult} from 'lit';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -31,27 +31,30 @@ interface SearchbarChangeEventDetail {
  */
 @customElement('page-article-list')
 export class PageArticleList extends ShafiElement {
-  static override styles: CSSResultGroup = css`
-    :host {
-      display: flex;
-      flex-direction: column;
-    }
+  static override styles: CSSResultGroup = [
+    ...(ShafiElement.styles as CSSResult[]),
+    css`
+      :host {
+        display: flex;
+        flex-direction: column;
+      }
 
-    input[type='search']::-webkit-search-cancel-button,
-    input[type='search']::-webkit-search-decoration {
-      -webkit-appearance: none;
-    }
+      input[type='search']::-webkit-search-cancel-button,
+      input[type='search']::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
 
-    ion-card-title {
-      font-size: 22px;
-      font-weight: 500;
-    }
+      ion-card-title {
+        font-size: 22px;
+        font-weight: 500;
+      }
 
-    ion-card img {
-      max-width: 100%;
-      border: 0;
-    }
-  `;
+      ion-card img {
+        max-width: 100%;
+        border: 0;
+      }
+    `,
+  ];
 
   @property({type: String})
     type: 'minimal' | 'card' | 'mini-card' = 'card';
