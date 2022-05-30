@@ -4,30 +4,10 @@ export const mainTabBar = [
     title: 'خانه',
     icon: 'home',
   },
-  // {
-  //   id: 'about-him',
-  //   title: 'احمد الحسن',
-  //   icon: 'person',
-  // },
   {
-    id: 'beliefs',
-    title: 'اعتقادات',
-    icon: 'chatbubbles',
-  },
-  {
-    id: 'articles',
-    title: 'مقالات',
-    icon: 'newspaper',
-  },
-  {
-    id: 'search',
-    title: 'جستجو',
-    icon: 'search',
-  },
-  {
-    id: 'bookmarks',
-    title: 'نشانک‌ها',
-    icon: 'bookmark',
+    id: 'cards',
+    title: 'خطابه',
+    icon: 'home',
   },
 ] as const;
 
