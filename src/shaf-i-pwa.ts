@@ -6,7 +6,7 @@ import {state} from 'lit/decorators/state.js';
 import {mainTabBar} from './config';
 import {ShafiElement} from './shaf-i-debt/shaf-i-element';
 import './elements/page-home';
-import './elements/page-article-list';
+import './elements/page-cards-slider';
 
 import type {RoutesConfig} from '@alwatr/router';
 import type {ListenerInterface} from '@alwatr/signal';
@@ -118,11 +118,8 @@ export class ShafiPwa extends ShafiElement {
       home: {
         render: () => html`<page-home></page-home>`,
       },
-      beliefs: {
-        render: () => html`<page-article-list type="card"></page-article-list>`,
-      },
-      articles: {
-        render: () => html`<page-article-list type="mini-card"></page-article-list>`,
+      cards: {
+        render: () => html`<page-cards-slider></page-cards-slider>`,
       },
     },
   };

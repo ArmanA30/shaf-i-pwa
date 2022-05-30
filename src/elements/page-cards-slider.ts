@@ -1,4 +1,4 @@
-import {css, html} from 'lit';
+import {css, html, CSSResultGroup} from 'lit';
 import {customElement} from 'lit/decorators/custom-element.js';
 
 import {ShafiElement} from '../shaf-i-debt/shaf-i-element';
@@ -8,21 +8,20 @@ import type {TemplateResult, CSSResult} from 'lit';
 
 declare global {
   interface HTMLElementTagNameMap {
-    'page-home': PageHome;
+    'page-cards-slider': PageCardsSlider;
   }
 }
 
 /**
- * Shaf-I PWA Home Page Element
+ * Shaf-I PWA Cards Slider Page Element
  *
  * ```html
- * <page-home></page-home>
+ * <page-cards-slider></page-cards-slider>
  * ```
  */
-@customElement('page-home')
-export class PageHome extends ShafiElement {
-  // TODO: import pageStyle
-  static override styles = [
+@customElement('page-cards-slider')
+export class PageCardsSlider extends ShafiElement {
+  static override styles: CSSResultGroup = [
     ...(ShafiElement.styles as CSSResult[]),
     css`
       :host {
@@ -44,17 +43,17 @@ export class PageHome extends ShafiElement {
     this._listenerList.forEach((listener) => (listener as ListenerInterface<keyof AlwatrSignals>).remove());
   }
 
-  override render(): TemplateResult {
+  protected override render(): TemplateResult {
     return html`
       <ion-header translucent dir="rtl">
         <ion-toolbar color="primary">
-          <ion-title>صفحه خانه</ion-title>
+          <ion-title>صفحه خطابه</ion-title>
         </ion-toolbar>
       </ion-header>
 
       <ion-content>
         <ion-text color="dark">
-          <h1 class="ion-text-center">هدر صفحه خانه</h1>
+          <h1 class="ion-text-center">هدر صفحه خطابه غذیر</h1>
         </ion-text>
       </ion-content>
     `;
