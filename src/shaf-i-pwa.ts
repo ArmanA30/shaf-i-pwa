@@ -7,13 +7,10 @@ import {mainTabBar} from './config';
 import {ShafiElement} from './shaf-i-debt/shaf-i-element';
 import './elements/page-home';
 import './elements/page-article-list';
-import './elements/page-article-detail';
-import './elements/page-bookmarks';
-import './elements/page-search';
 
 import type {RoutesConfig} from '@alwatr/router';
 import type {ListenerInterface} from '@alwatr/signal';
-import type {TemplateResult} from 'lit';
+import type {TemplateResult, CSSResult} from 'lit';
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -32,73 +29,76 @@ declare global {
 export class ShafiPwa extends ShafiElement {
   // TODO: import pageStyle
   // TODO: rethink about `contain` in all elements https://developers.google.com/web/updates/2016/06/css-containment
-  static override styles = css`
-    :host {
-      inset: 0;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      display: flex;
-      position: absolute;
-      flex-direction: column;
-      justify-content: space-between;
-      contain: layout size style;
-      overflow: hidden;
-      z-index: 0;
-    }
+  static override styles = [
+    ...(ShafiElement.styles as CSSResult[]),
+    css`
+      :host {
+        inset: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        justify-content: space-between;
+        contain: layout size style;
+        overflow: hidden;
+        z-index: 0;
+      }
 
-    .page-container {
-      position: relative;
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 0%;
-      contain: size layout style;
-    }
+      .page-container {
+        position: relative;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0%;
+        contain: size layout style;
+      }
 
-    ion-tab-bar {
-      height: 56px;
-    }
+      ion-tab-bar {
+        height: 56px;
+      }
 
-    ion-tab-button {
-      letter-spacing: 0;
-      font-size: 12px;
-      font-weight: 400;
-    }
+      ion-tab-button {
+        letter-spacing: 0;
+        font-size: 12px;
+        font-weight: 400;
+      }
 
-    ion-tab-button ion-icon {
-      font-size: 22px;
-    }
+      ion-tab-button ion-icon {
+        font-size: 22px;
+      }
 
-    page-home,
-    page-article-list,
-    page-article-detail,
-    page-bookmarks,
-    page-search {
-      inset: 0;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      display: flex;
-      position: absolute;
-      flex-direction: column;
-      justify-content: space-between;
-      contain: layout size style;
-      overflow: hidden;
-      z-index: 0;
-    }
+      page-home,
+      page-article-list,
+      page-article-detail,
+      page-bookmarks,
+      page-search {
+        inset: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        justify-content: space-between;
+        contain: layout size style;
+        overflow: hidden;
+        z-index: 0;
+      }
 
-    /* This will be displayed only on lazy loading. */
-    [unresolved]::after {
-      content: '...';
-      display: block;
-      font-size: 2em;
-      padding-top: 30vh;
-      letter-spacing: 3px;
-      text-align: center;
-    }
-  `;
+      /* This will be displayed only on lazy loading. */
+      [unresolved]::after {
+        content: '...';
+        display: block;
+        font-size: 2em;
+        padding-top: 30vh;
+        letter-spacing: 3px;
+        text-align: center;
+      }
+    `,
+  ];
 
   @state()
   protected _hideTabBar = false;
@@ -123,15 +123,6 @@ export class ShafiPwa extends ShafiElement {
       },
       articles: {
         render: () => html`<page-article-list type="mini-card"></page-article-list>`,
-      },
-      bookmarks: {
-        render: () => html`<page-bookmarks></page-bookmarks>`,
-      },
-      article: {
-        render: (route) => html`<page-article-detail article-id=${route.sectionList[1]}></page-article-detail>`,
-      },
-      search: {
-        render: () => html`<page-search article-id="1"></page-search>`,
       },
     },
   };

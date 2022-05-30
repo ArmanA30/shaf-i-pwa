@@ -1,8 +1,10 @@
 import {createLogger} from '@alwatr/logger';
 import {LitElement} from 'lit';
 
+import ionicThemingStyleSheets from '../stylesheets/ionic.theming';
+
 import type {Logger} from '@alwatr/logger/type';
-import type {PropertyValues} from 'lit';
+import type {PropertyValues, CSSResult} from 'lit';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
 type Constructor<ClassType = {}> = new (...args: any[]) => ClassType;
@@ -16,6 +18,8 @@ export function LoggableMixin<ClassType extends Constructor<LitElement>>(
 ): Constructor<LoggableMixinInterface> & ClassType {
   class LoggableMixinClass extends superClass {
     protected _logger = createLogger(`<${this.tagName.toLowerCase()}>`);
+
+    static styles: CSSResult[] = [ionicThemingStyleSheets];
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
