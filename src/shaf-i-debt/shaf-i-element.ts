@@ -1,7 +1,10 @@
 import {createLogger} from '@alwatr/logger';
 import {LitElement} from 'lit';
 
+import ionicResetStyleSheets from '../stylesheets/ionic.reset';
 import ionicThemingStyleSheets from '../stylesheets/ionic.theming';
+import ionicUtilitiesStyleSheets from '../stylesheets/ionic.utilities';
+import resetStyleSheets from '../stylesheets/stylesheet.reset';
 
 import type {Logger} from '@alwatr/logger/type';
 import type {PropertyValues, CSSResult} from 'lit';
@@ -19,7 +22,12 @@ export function LoggableMixin<ClassType extends Constructor<LitElement>>(
   class LoggableMixinClass extends superClass {
     protected _logger = createLogger(`<${this.tagName.toLowerCase()}>`);
 
-    static styles: CSSResult[] = [ionicThemingStyleSheets];
+    static styles: CSSResult[] = [
+      resetStyleSheets,
+      ionicResetStyleSheets,
+      ionicThemingStyleSheets,
+      ionicUtilitiesStyleSheets,
+    ];
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(...args: any[]) {
